@@ -25,13 +25,9 @@ from typing import TYPE_CHECKING, Any
 if TYPE_CHECKING:
     from pydantic import BaseModel
 
-# Model defaults. Portkey/Bedrock form is the common case; the plain form is
-# for direct provider access (litellm infers the provider from the slug).
-JUDGE_MODEL_PORTKEY = "@bedrock/global.anthropic.claude-sonnet-4-6"
-JUDGE_MODEL_DIRECT = "claude-sonnet-4-6"
-
-CLASSIFIER_MODEL_PORTKEY = "@bedrock/global.anthropic.claude-haiku-4-5-20251001-v1:0"
-CLASSIFIER_MODEL_DIRECT = "claude-haiku-4-5-20251001"
+# Default judge/classifier models, overridden by the SSB_OVERRIDE_* env vars.
+JUDGE_MODEL_DEFAULT = "anthropic/claude-sonnet-4-6"
+CLASSIFIER_MODEL_DEFAULT = "anthropic/claude-haiku-4-5-20251001"
 
 _RETRY_ATTEMPTS = 4
 
@@ -101,33 +97,14 @@ def have_credentials() -> bool:
     )
 
 
-def _is_routed() -> bool:
-    """True when a gateway routing key is set (vs. direct provider access)."""
-    return bool(resolve_portkey_key())
-
-
 def judge_model() -> str:
-    """Resolve the judge model name (shared by rubric, taste, validation review).
-
-    ``SSB_OVERRIDE_ALL_JUDGE_MODEL`` wins if set; otherwise the gateway-native
-    or direct default is chosen internally based on whether a routing key is set.
-    """
-    override = os.environ.get(JUDGE_MODEL_OVERRIDE_VAR)
-    if override:
-        return override
-    return JUDGE_MODEL_PORTKEY if _is_routed() else JUDGE_MODEL_DIRECT
+    """Judge model (rubric, taste, validation review): ``SSB_OVERRIDE_ALL_JUDGE_MODEL`` if set, else the default."""
+    return os.environ.get(JUDGE_MODEL_OVERRIDE_VAR) or JUDGE_MODEL_DEFAULT
 
 
 def classifier_model() -> str:
-    """Resolve the patch-classifier model name.
-
-    ``SSB_OVERRIDE_CLASSIFIER_MODEL`` wins if set; otherwise the gateway-native
-    or direct default is chosen internally.
-    """
-    override = os.environ.get(CLASSIFIER_MODEL_OVERRIDE_VAR)
-    if override:
-        return override
-    return CLASSIFIER_MODEL_PORTKEY if _is_routed() else CLASSIFIER_MODEL_DIRECT
+    """Patch-classifier model: ``SSB_OVERRIDE_CLASSIFIER_MODEL`` if set, else the default."""
+    return os.environ.get(CLASSIFIER_MODEL_OVERRIDE_VAR) or CLASSIFIER_MODEL_DEFAULT
 
 
 # ───────────────────────────────────────────────────────────────────────────

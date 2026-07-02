@@ -10,8 +10,6 @@
 # Score=1 captures the "concerning but recoverable via retry" zone that
 # drives actionable feedback. Score=2 is the typical clean state.
 
-judge_model_default = "@bedrock/global.anthropic.claude-sonnet-4-6"
-
 # ── Gating-eligible dimensions: score == 0 ⇒ discard ────────────────────────
 
 [[criterion]]

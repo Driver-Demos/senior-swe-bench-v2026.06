@@ -78,14 +78,12 @@ class RubricCriterion:
 
 @dataclass(frozen=True)
 class Rubric:
-    judge_model_default: str
     criteria: tuple[RubricCriterion, ...]
 
     @classmethod
     def load(cls, path: Path) -> Rubric:
         data = tomllib.loads(path.read_text())
         return cls(
-            judge_model_default=data["judge_model_default"],
             criteria=tuple(RubricCriterion(**c) for c in data["criterion"]),
         )
 
@@ -463,7 +461,7 @@ def judge(
     ``result.actionable``.
     """
     rubric = rubric or _load_default_rubric()
-    model = model or rubric.judge_model_default
+    model = model or llm_utils.judge_model()
 
     prompt_text, truncation_notes = render_judge_prompt(inputs, rubric)
     tool = _tool_schema(rubric)

@@ -95,11 +95,8 @@ class ValidationConfig:
         """Build config from parsed TOML spec, overlaid with env vars."""
         settings = spec.get("settings", {})
 
-        # Validation agent model: spec setting > default. The default is a
-        # gateway-native slug since gateway routing (PORTKEY_API_KEY in
-        # verifier.env) is the common case; for direct Anthropic, set va_model to
-        # a plain name like "claude-sonnet-4-6".
-        va_model = settings.get("va_model") or "@bedrock/global.anthropic.claude-sonnet-4-6"
+        # Validation agent model: spec setting > default, overridden by SSB_OVERRIDE_VA_MODEL.
+        va_model = settings.get("va_model") or "anthropic/claude-sonnet-4-6"
         # Default harness is mini-swe-agent (deterministic temp-0, fully
         # controlled prompt, version-pinned in test.sh). Set
         # SSB_OVERRIDE_VA_HARNESS=claude_code to use the Claude Code CLI instead
@@ -665,8 +662,7 @@ def main() -> int:
     system_prompt = Path(args.system_prompt).read_text()
     user_prompt = Path(args.user_prompt).read_text()
 
-    # gpt-5.x/o-series reject temperature != 1 and need the Responses API; mirror harbor's
-    # mini-swe-agent adapter.
+    # gpt-5.x/o-series reject temperature != 1 and need the Responses API.
     _leaf = args.model.split("/")[-1].lower()
     _openai_reasoning = args.model.startswith("openai/") and (
         _leaf.startswith("gpt-5") or (_leaf[:1] == "o" and _leaf[1:2].isdigit())
