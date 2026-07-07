@@ -20,7 +20,7 @@ RUN mix local.hex --force && mix local.rebar --force
 # --single-branch --no-tags prevents tag refs from exposing post-rewind
 # commits via `git log --all`.
 RUN git clone --depth=200 --single-branch --no-tags -b main \
-        https://github.com/electric-sql/electric.git /repo/electric
+        https://github.com/driver-ai/electric.git /repo/electric
 WORKDIR /repo/electric
 
 # Rewind to the pre-fix commit (parent of the merge for PR #4064).
