@@ -13,8 +13,8 @@ RUN curl -LsSf https://astral.sh/uv/0.9.7/install.sh | sh
 ENV PATH="/root/.local/bin:${PATH}"
 
 # Clone repo; unshallow afterward to reach the pre-fix commit.
-RUN git clone --depth=1 --single-branch --no-tags -b main \
-    https://github.com/harbor-framework/harbor /repo/harbor
+RUN git clone --depth=1 --single-branch --no-tags -b harbor-add-windows-tasks-support-3957353c \
+    https://github.com/Driver-Demos/harbor /repo/harbor
 WORKDIR /repo/harbor
 RUN git fetch --unshallow 2>/dev/null || true
 

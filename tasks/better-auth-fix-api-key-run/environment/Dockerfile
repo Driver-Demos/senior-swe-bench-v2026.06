@@ -30,8 +30,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
 RUN npm install -g pnpm@${PNPM_VERSION}
 
 # --single-branch + --no-tags so tag refs can't reveal post-rewind commits.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/better-auth/better-auth.git /repo/better-auth
+RUN git clone --single-branch --no-tags -b better-auth-fix-api-key-run-def25807 \
+        https://github.com/Driver-Demos/better-auth.git /repo/better-auth
 WORKDIR /repo/better-auth
 
 # Rewind to the pre-fix commit (parent of merge commit
