@@ -41,7 +41,7 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 # post-checkout `git gc` fail once origin is removed. --no-tags avoids
 # exposing post-rewind commits via tag refs.
 RUN git clone --no-tags \
-        https://github.com/harbor-framework/harbor.git /repo/harbor
+        https://github.com/Driver-Demos/harbor.git /repo/harbor
 WORKDIR /repo/harbor
 
 # Check out the pre-fix commit (PR #1349 base; parent state before the

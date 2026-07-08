@@ -35,8 +35,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 
 # Clone harbor at the pre-fix commit. --single-branch + --no-tags prevents
 # git log/cat-file from revealing post-rewind commits via tag refs.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/harbor-framework/harbor.git /repo/harbor
+RUN git clone --single-branch --no-tags -b harbor-add-multi-step-tasks-32bf7afc \
+        https://github.com/Driver-Demos/harbor.git /repo/harbor
 WORKDIR /repo/harbor
 
 # Rewind to the pre-fix commit (the parent commit of the PR-1234 merge

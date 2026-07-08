@@ -19,7 +19,7 @@ RUN mix local.hex --force && mix local.rebar --force
 
 # --single-branch --no-tags prevents tag refs from exposing post-rewind
 # commits via `git log --all`.
-RUN git clone --depth=200 --single-branch --no-tags -b main \
+RUN git clone --depth=200 --single-branch --no-tags -b electric-fix-resolve-pending-shapes-93bb0e78 \
         https://github.com/driver-ai/electric.git /repo/electric
 WORKDIR /repo/electric
 

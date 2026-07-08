@@ -19,7 +19,7 @@ RUN mix local.hex --force && mix local.rebar --force
 
 # --single-branch --no-tags prevents tag refs from exposing post-rewind
 # commits via `git log --all`.
-RUN git clone --depth=200 --single-branch --no-tags -b main \
+RUN git clone --depth=200 --single-branch --no-tags -b electric-perf-array-filter-eval-261b7fff \
         https://github.com/driver-ai/electric.git /repo/electric
 WORKDIR /repo/electric
 

@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Clone harbor. single-branch/no-tags so post-rewind commits cannot be
 # reached via tags or other remote refs.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/harbor-framework/harbor.git /repo/harbor
+RUN git clone --single-branch --no-tags -b harbor-refactor-optional-sandbox-deps-fc7a7f7b \
+        https://github.com/Driver-Demos/harbor.git /repo/harbor
 WORKDIR /repo/harbor
 
 # Rewind to the pre-fix commit (parent of the earliest merge in the group).

@@ -18,7 +18,7 @@ RUN mix local.hex --force && mix local.rebar --force
 
 # Clone the electric repo. --single-branch --no-tags prevents tag refs
 # from exposing post-rewind commits via `git log --all`.
-RUN git clone --depth=200 --single-branch --no-tags -b main \
+RUN git clone --depth=200 --single-branch --no-tags -b electric-feat-add-variadic-function-db0b1536 \
         https://github.com/driver-ai/electric.git /repo/electric
 WORKDIR /repo/electric
 
