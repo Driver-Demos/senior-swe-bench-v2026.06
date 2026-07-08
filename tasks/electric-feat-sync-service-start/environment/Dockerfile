@@ -40,7 +40,7 @@ RUN mix local.hex --force && mix local.rebar --force
 
 # --single-branch + --no-tags so tag refs can't reveal post-rewind commits;
 # unshallow below so commit-walking tooling still works.
-RUN git clone --depth=1 --single-branch --no-tags -b main \
+RUN git clone --depth=1 --single-branch --no-tags -b electric-feat-sync-service-start-db53b77b \
         https://github.com/driver-ai/electric.git /repo/electric
 WORKDIR /repo/electric
 RUN git fetch --unshallow 2>/dev/null || true

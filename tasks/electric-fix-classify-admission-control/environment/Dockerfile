@@ -62,7 +62,7 @@ RUN service postgresql start \
     && service postgresql stop || true
 
 # Clone the electric repo.
-RUN git clone --depth=200 --single-branch --no-tags -b main \
+RUN git clone --depth=200 --single-branch --no-tags -b electric-fix-classify-admission-control-b88bf7d4 \
         https://github.com/driver-ai/electric.git /repo/electric
 WORKDIR /repo/electric
 
