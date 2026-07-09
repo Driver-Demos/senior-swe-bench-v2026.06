@@ -41,8 +41,8 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && node --version && pnpm --version
 
 # Clone the repository (single-branch, no tags) at the pre-fix commit.
-RUN git clone --depth=1 --single-branch --no-tags -b dev \
-        https://github.com/paperless-ngx/paperless-ngx /repo/paperless-ngx
+RUN git clone --depth=1 --single-branch --no-tags -b paperless-ngx-feat-saved-view-sharing-ef38cb2f \
+        https://github.com/Driver-Demos/paperless-ngx /repo/paperless-ngx
 WORKDIR /repo/paperless-ngx
 RUN git fetch --unshallow 2>/dev/null || true
 

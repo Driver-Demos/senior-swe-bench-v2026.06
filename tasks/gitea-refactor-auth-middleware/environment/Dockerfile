@@ -34,8 +34,8 @@ ENV PATH=/usr/local/go/bin:/root/go/bin:${PATH} \
 
 # Clone gitea at the pre-fix commit. --single-branch --no-tags is
 # REQUIRED so post-rewind tags can't expose the fix via `git log --all`.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/go-gitea/gitea.git /repo/gitea
+RUN git clone --single-branch --no-tags -b gitea-refactor-auth-middleware-0ed18b7a \
+        https://github.com/Driver-Demos/gitea.git /repo/gitea
 WORKDIR /repo/gitea
 RUN git fetch --unshallow 2>/dev/null || true
 

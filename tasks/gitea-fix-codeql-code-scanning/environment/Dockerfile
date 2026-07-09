@@ -40,8 +40,8 @@ ENV GOEXPERIMENT=jsonv2
 
 # Clone gitea at the pre-fix commit. --single-branch --no-tags is required so
 # that post-rewind tags can't expose the fix via `git log --all`.
-RUN git clone --depth=400 --single-branch --no-tags -b main \
-        https://github.com/go-gitea/gitea.git /repo/gitea
+RUN git clone --depth=400 --single-branch --no-tags -b gitea-fix-codeql-code-scanning-f2c506d7 \
+        https://github.com/Driver-Demos/gitea.git /repo/gitea
 WORKDIR /repo/gitea
 RUN git fetch --unshallow 2>/dev/null || true
 

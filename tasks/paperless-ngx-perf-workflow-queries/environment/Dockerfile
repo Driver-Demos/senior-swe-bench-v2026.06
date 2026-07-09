@@ -34,8 +34,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
     && python3 --version
 
 # Clone, then rewind to the pre-fix commit (rewind below pins it).
-RUN git clone --depth=1 --single-branch --no-tags -b dev \
-        https://github.com/paperless-ngx/paperless-ngx /repo/paperless-ngx
+RUN git clone --depth=1 --single-branch --no-tags -b paperless-ngx-perf-workflow-queries-d55da6a8 \
+        https://github.com/Driver-Demos/paperless-ngx /repo/paperless-ngx
 WORKDIR /repo/paperless-ngx
 RUN git fetch --unshallow 2>/dev/null || true
 
