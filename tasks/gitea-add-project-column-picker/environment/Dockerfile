@@ -37,8 +37,8 @@ ENV PATH=/usr/local/go/bin:/root/go/bin:${PATH} \
 # initial fetch is fast but `git log` can still reach history.
 # --single-branch --no-tags is REQUIRED so post-rewind tags can't expose
 # the canonical fix via `git log --all`.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/go-gitea/gitea.git /repo/gitea
+RUN git clone --single-branch --no-tags -b gitea-add-project-column-picker-36ed002b \
+        https://github.com/Driver-Demos/gitea.git /repo/gitea
 WORKDIR /repo/gitea
 RUN git fetch --unshallow 2>/dev/null || true
 

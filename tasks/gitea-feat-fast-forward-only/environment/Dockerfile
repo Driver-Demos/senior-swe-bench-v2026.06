@@ -26,8 +26,8 @@ ENV PATH=/usr/local/go/bin:/root/go/bin:${PATH} \
 
 # Clone gitea at the pre-fix commit. depth=1 first then unshallow so the
 # initial fetch is fast but `git log` can still reach history.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/go-gitea/gitea.git /repo/gitea
+RUN git clone --single-branch --no-tags -b gitea-feat-fast-forward-only-d2fb79e2 \
+        https://github.com/Driver-Demos/gitea.git /repo/gitea
 WORKDIR /repo/gitea
 RUN git fetch --unshallow 2>/dev/null || true
 
