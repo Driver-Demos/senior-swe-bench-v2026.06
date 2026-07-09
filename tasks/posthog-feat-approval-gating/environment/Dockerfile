@@ -45,8 +45,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
 
 # Clone at the pre-fix commit. --single-branch + --no-tags stops post-fix
 # commits from leaking via tag refs.
-RUN git clone --depth=200 --single-branch --no-tags -b master \
-        https://github.com/PostHog/posthog.git /repo/posthog
+RUN git clone --depth=200 --single-branch --no-tags -b posthog-feat-approval-gating-0f18bcbb \
+        https://github.com/Driver-Demos/posthog.git /repo/posthog
 WORKDIR /repo/posthog
 RUN git fetch --unshallow 2>/dev/null || true
 
