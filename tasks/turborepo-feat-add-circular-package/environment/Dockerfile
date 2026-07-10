@@ -52,8 +52,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- \
 # Clone turborepo at the pre-fix commit. depth=200 keeps history reachable
 # without pulling 5+ years of commits; --single-branch + --no-tags prevents
 # tag refs from exposing post-rewind commits via `git log --all`.
-RUN git clone --depth=200 --single-branch --no-tags -b main \
-        https://github.com/vercel/turborepo.git /repo/turborepo
+RUN git clone --depth=200 --single-branch --no-tags -b turborepo-feat-add-circular-package-91f57461 \
+        https://github.com/Driver-Demos/turborepo.git /repo/turborepo
 WORKDIR /repo/turborepo
 RUN git fetch --unshallow 2>/dev/null || true
 
