@@ -49,9 +49,30 @@ unidiff>=0.7,<1.0
 pygments>=2.17,<3.0
 ast-grep-py>=0.30,<1.0
 REQS
-"$_SYS_PYTHON" -m pip install --break-system-packages -r /tmp/verifier-requirements.txt -q 2>/dev/null \
-  || "$_SYS_PYTHON" -m pip install -r /tmp/verifier-requirements.txt -q 2>/dev/null \
-  || true
+# Install verifier deps, capturing output to a log (never /dev/null) so a failed
+# install is diagnosable instead of silently yielding an empty reward downstream.
+# --break-system-packages is required on newer pip (PEP 668) but rejected by pip
+# < 23.1, so probe for the flag rather than assuming it.
+mkdir -p /logs/verifier
+_PIP_BSP=""
+if "$_SYS_PYTHON" -m pip install --help 2>/dev/null | grep -q -- '--break-system-packages'; then
+    _PIP_BSP="--break-system-packages"
+fi
+"$_SYS_PYTHON" -m pip install $_PIP_BSP -r /tmp/verifier-requirements.txt \
+    > /logs/verifier/verifier_pip.log 2>&1 || true
+
+# Hard gate: the LLM judges and validation harness import litellm. If it is not
+# importable the install failed — record an explicit infrastructure error (empty
+# reward + diagnostic) instead of letting a later stage emit a silent reward=0.
+# Mirrors the validation-agent infrastructure-failure path below.
+if ! "$_SYS_PYTHON" -c 'import litellm' 2>>/logs/verifier/verifier_pip.log; then
+    echo "Verifier dependency install failed: litellm not importable — see /logs/verifier/verifier_pip.log" >&2
+    : > /logs/verifier/reward.txt
+    rm -f /logs/verifier/reward.json
+    printf '%s\n' '{"infra_error": "verifier_requirements_install_failed", "missing_module": "litellm", "log": "verifier_pip.log"}' \
+        > /logs/verifier/verifier_infra_error.json
+    exit 0
+fi
 
 # Task-specific service startup and data seeding (may activate a project venv)
 source /tests/test-setup.sh
