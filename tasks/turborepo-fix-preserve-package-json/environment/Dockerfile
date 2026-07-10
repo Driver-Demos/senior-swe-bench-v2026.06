@@ -49,8 +49,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
 
 # Clone turborepo; depth=1 first then unshallow keeps the initial fetch fast
 # while still letting `git log` reach pre-fix history.
-RUN git clone --single-branch --no-tags -b main \
-        https://github.com/vercel/turborepo.git /repo/turborepo
+RUN git clone --single-branch --no-tags -b turborepo-fix-preserve-package-json-80b5fb68 \
+        https://github.com/Driver-Demos/turborepo.git /repo/turborepo
 WORKDIR /repo/turborepo
 RUN git fetch --unshallow 2>/dev/null || true
 
