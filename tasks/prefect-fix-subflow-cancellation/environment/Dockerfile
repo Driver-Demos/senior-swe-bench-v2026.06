@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin sh
 
-RUN git clone --depth=1 --single-branch --no-tags -b main \
-    https://github.com/PrefectHQ/prefect.git /repo/prefect
+RUN git clone --depth=1 --single-branch --no-tags -b prefect-fix-subflow-cancellation-8258b4e8 \
+    https://github.com/Driver-Demos/prefect.git /repo/prefect
 WORKDIR /repo/prefect
 RUN git fetch --unshallow 2>/dev/null || true
 
