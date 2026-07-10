@@ -51,15 +51,18 @@ ast-grep-py>=0.30,<1.0
 REQS
 # Install verifier deps, capturing output to a log (never /dev/null) so a failed
 # install is diagnosable instead of silently yielding an empty reward downstream.
-# --break-system-packages is required on newer pip (PEP 668) but rejected by pip
-# < 23.1, so probe for the flag rather than assuming it.
+# PEP 668 blocks installs into both distro- and uv-managed Pythons. Exporting
+# PIP_BREAK_SYSTEM_PACKAGES forces the override (honored by pip>=23.1, ignored by
+# older pip) without the fragile `pip install --help` probe, which came up empty for
+# uv-managed interpreters (e.g. paperless-ngx pins Python 3.13 via uv) and left the
+# flag off. The `uv pip` fallback covers uv interpreters directly when pip still fails.
 mkdir -p /logs/verifier
-_PIP_BSP=""
-if "$_SYS_PYTHON" -m pip install --help 2>/dev/null | grep -q -- '--break-system-packages'; then
-    _PIP_BSP="--break-system-packages"
-fi
-"$_SYS_PYTHON" -m pip install $_PIP_BSP -r /tmp/verifier-requirements.txt \
-    > /logs/verifier/verifier_pip.log 2>&1 || true
+export PIP_BREAK_SYSTEM_PACKAGES=1
+"$_SYS_PYTHON" -m pip install -r /tmp/verifier-requirements.txt \
+    > /logs/verifier/verifier_pip.log 2>&1 \
+  || uv pip install --python "$_SYS_PYTHON" -r /tmp/verifier-requirements.txt \
+    >> /logs/verifier/verifier_pip.log 2>&1 \
+  || true
 
 # Hard gate: the LLM judges and validation harness import litellm. If it is not
 # importable the install failed — record an explicit infrastructure error (empty
@@ -151,8 +154,10 @@ if [ -f /tests/validate/validation_spec.toml ]; then
             _PORTKEY_VERSION="2.2.0"
             if ! "$_SYS_PYTHON" -c "import minisweagent, portkey_ai, importlib.metadata as m, sys; sys.exit(0 if m.version('mini-swe-agent') == '$_MSWE_VERSION' else 1)" >/dev/null 2>&1; then
                 echo "Installing mini-swe-agent==$_MSWE_VERSION..."
-                "$_SYS_PYTHON" -m pip install --break-system-packages "mini-swe-agent==$_MSWE_VERSION" "portkey-ai==$_PORTKEY_VERSION" -q 2>/dev/null \
-                  || "$_SYS_PYTHON" -m pip install "mini-swe-agent==$_MSWE_VERSION" "portkey-ai==$_PORTKEY_VERSION" -q 2>/dev/null \
+                # PIP_BREAK_SYSTEM_PACKAGES (exported above) covers PEP 668; the uv
+                # fallback covers uv-managed interpreters whose pip still refuses.
+                "$_SYS_PYTHON" -m pip install "mini-swe-agent==$_MSWE_VERSION" "portkey-ai==$_PORTKEY_VERSION" -q 2>/dev/null \
+                  || uv pip install --python "$_SYS_PYTHON" "mini-swe-agent==$_MSWE_VERSION" "portkey-ai==$_PORTKEY_VERSION" -q 2>/dev/null \
                   || true
             fi
             ;;
