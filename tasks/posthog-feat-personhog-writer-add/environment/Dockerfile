@@ -71,8 +71,8 @@ RUN python3 -m pip install --break-system-packages \
 
 # Clone at the pre-fix commit. --single-branch + --no-tags stops post-fix
 # commits from leaking via tag refs.
-RUN git clone --single-branch --no-tags -b master \
-        https://github.com/PostHog/posthog.git /repo/posthog
+RUN git clone --single-branch --no-tags -b posthog-feat-personhog-writer-add-3f3c393d \
+        https://github.com/Driver-Demos/posthog.git /repo/posthog
 WORKDIR /repo/posthog
 
 # Rewind to the pre-fix commit (parent of merge commit

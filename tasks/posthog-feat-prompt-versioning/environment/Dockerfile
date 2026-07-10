@@ -61,8 +61,8 @@ RUN UV_PY="$(uv python find 3.12.12 2>/dev/null || true)" && \
 # large for Modal image builds): shallow clone the tip, then fetch the exact
 # pre-fix commit at depth=1 and reset to it. --single-branch + --no-tags
 # stops post-fix commits from leaking via tag refs.
-RUN git clone --depth=1 --single-branch --no-tags -b master \
-        https://github.com/PostHog/posthog.git /repo/posthog
+RUN git clone --depth=1 --single-branch --no-tags -b posthog-feat-prompt-versioning-0f6d9352 \
+        https://github.com/Driver-Demos/posthog.git /repo/posthog
 WORKDIR /repo/posthog
 # Fetch exactly the pre-fix commit (parent of merge commit
 # 2b67391cfe6cdaeeca65a9a8ad907baf755302cb).

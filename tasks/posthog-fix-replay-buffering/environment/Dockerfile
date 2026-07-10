@@ -28,8 +28,8 @@ RUN curl -LsSf https://github.com/astral-sh/uv/releases/download/0.10.10/uv-inst
 
 # Clone PostHog at the pre-fix commit (--single-branch + --no-tags ensures
 # git log/cat-file can't reveal post-rewind commits via tag refs)
-RUN git clone --depth=200 --single-branch --no-tags -b master \
-        https://github.com/PostHog/posthog.git /repo/posthog
+RUN git clone --depth=200 --single-branch --no-tags -b posthog-fix-replay-buffering-b606af8d \
+        https://github.com/Driver-Demos/posthog.git /repo/posthog
 WORKDIR /repo/posthog
 RUN git fetch --unshallow 2>/dev/null || true
 
