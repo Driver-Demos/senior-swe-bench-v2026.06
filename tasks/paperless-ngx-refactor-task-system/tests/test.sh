@@ -43,7 +43,7 @@ cat > /tmp/verifier-requirements.txt <<'REQS'
 pytest>=7.0,<9.0
 requests>=2.28,<3.0
 jinja2>=3.1,<4.0
-litellm>=1.0,<2.0
+litellm>=1.0,<1.92
 pydantic>=2.0,<3.0
 unidiff>=0.7,<1.0
 pygments>=2.17,<3.0
