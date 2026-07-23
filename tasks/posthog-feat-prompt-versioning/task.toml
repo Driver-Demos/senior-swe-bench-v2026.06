@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/posthog-feat-prompt-versioning/context/749c7eed-c7ff-5931-82d4-53b4201065df.jsonl", destination = "/context/749c7eed-c7ff-5931-82d4-53b4201065df.jsonl"},
+]
+workdir = "/repo/posthog"
 
 [verifier]
 timeout_sec = 2400.0

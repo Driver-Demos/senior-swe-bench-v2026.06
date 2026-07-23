@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/posthog-fix-replay-buffering/context/26dcd751-8b46-50c9-8562-a1bd0bf27091.jsonl", destination = "/context/26dcd751-8b46-50c9-8562-a1bd0bf27091.jsonl"},
+]
+workdir = "/repo/posthog"
 
 [verifier]
 timeout_sec = 1800.0

@@ -12,6 +12,10 @@ cpus = 2
 memory = "4G"
 storage = "10G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/posthog-fix-llm-gateway-add/context/0cd511b1-ae38-50e0-a01b-a7db9d051f57.jsonl", destination = "/context/0cd511b1-ae38-50e0-a01b-a7db9d051f57.jsonl"},
+]
+workdir = "/repo/posthog"
 
 [verifier]
 timeout_sec = 600.0
