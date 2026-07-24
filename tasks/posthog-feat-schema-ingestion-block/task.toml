@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/posthog-feat-schema-ingestion-block/context/9151f171-49d1-58e5-b788-60344ec30120.jsonl", destination = "/context/9151f171-49d1-58e5-b788-60344ec30120.jsonl"},
+]
+workdir = "/repo/posthog"
 
 [verifier]
 timeout_sec = 2400.0

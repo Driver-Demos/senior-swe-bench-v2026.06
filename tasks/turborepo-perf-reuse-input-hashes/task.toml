@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "30G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/turborepo-perf-reuse-input-hashes/context/40494740-4442-5513-a0de-a2b6e9c54784.jsonl", destination = "/context/40494740-4442-5513-a0de-a2b6e9c54784.jsonl"},
+]
+workdir = "/repo/turborepo"
 
 [verifier]
 timeout_sec = 1800.0
