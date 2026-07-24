@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/plausible-fix-cross-site-resource-attach/context/8fc7b224-709a-565d-ba92-19283352a761.jsonl", destination = "/context/8fc7b224-709a-565d-ba92-19283352a761.jsonl"},
+]
+workdir = "/repo/plausible"
 
 [verifier]
 timeout_sec = 1200.0
