@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "30G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/firezone-fix-connlib-align-device/context/f902a7b4-4927-5d53-a7d3-cbfc725ee73c.jsonl", destination = "/context/f902a7b4-4927-5d53-a7d3-cbfc725ee73c.jsonl"},
+]
+workdir = "/repo/firezone"
 
 [verifier]
 timeout_sec = 600.0

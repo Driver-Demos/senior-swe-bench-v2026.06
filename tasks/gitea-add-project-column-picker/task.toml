@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/gitea-add-project-column-picker/context/241f32bd-9b0f-5fc0-a2b9-0a9167a12fbe.jsonl", destination = "/context/241f32bd-9b0f-5fc0-a2b9-0a9167a12fbe.jsonl"},
+]
+workdir = "/repo/gitea"
 
 [verifier]
 timeout_sec = 1200.0

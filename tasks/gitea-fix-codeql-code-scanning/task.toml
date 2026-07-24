@@ -12,6 +12,10 @@ cpus = 2
 memory = "4G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/gitea-fix-codeql-code-scanning/context/6844112a-34f3-59f8-8e9c-a2cf0228b8d5.jsonl", destination = "/context/6844112a-34f3-59f8-8e9c-a2cf0228b8d5.jsonl"},
+]
+workdir = "/repo/gitea"
 
 [verifier]
 timeout_sec = 600.0

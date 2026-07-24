@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/electric-perf-array-filter-eval/context/f3f8e4a1-3808-5f7e-bc4c-57b03934ccde.jsonl", destination = "/context/f3f8e4a1-3808-5f7e-bc4c-57b03934ccde.jsonl"},
+]
+workdir = "/repo/electric"
 
 [verifier]
 timeout_sec = 600.0

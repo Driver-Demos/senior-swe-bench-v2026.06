@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/electric-fix-classify-admission-control/context/75c823dc-ab9d-5d47-a6b8-8bced5742236.jsonl", destination = "/context/75c823dc-ab9d-5d47-a6b8-8bced5742236.jsonl"},
+]
+workdir = "/repo/electric"
 
 [verifier]
 timeout_sec = 900.0

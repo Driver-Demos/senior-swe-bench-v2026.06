@@ -12,6 +12,10 @@ cpus = 2
 memory = "4G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/harbor-add-windows-tasks-support/context/4c184961-3ffd-595d-8d6b-a464ed9f08c1.jsonl", destination = "/context/4c184961-3ffd-595d-8d6b-a464ed9f08c1.jsonl"},
+]
+workdir = "/repo/harbor"
 
 [verifier]
 timeout_sec = 2400.0

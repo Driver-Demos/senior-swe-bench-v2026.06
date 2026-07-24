@@ -12,6 +12,10 @@ cpus = 2
 memory = "4G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/harbor-refactor-optional-sandbox-deps/context/82d68c9c-e6bd-56e0-82de-6bab11f8da78.jsonl", destination = "/context/82d68c9c-e6bd-56e0-82de-6bab11f8da78.jsonl"},
+]
+workdir = "/repo/harbor"
 
 [verifier]
 timeout_sec = 900.0

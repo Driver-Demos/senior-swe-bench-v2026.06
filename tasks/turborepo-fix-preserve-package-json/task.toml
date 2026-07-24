@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "30G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/turborepo-fix-preserve-package-json/context/47c560d0-06f5-5999-9574-cdda707463ac.jsonl", destination = "/context/47c560d0-06f5-5999-9574-cdda707463ac.jsonl"},
+]
+workdir = "/repo/turborepo"
 
 [verifier]
 timeout_sec = 1800.0

@@ -12,6 +12,10 @@ cpus = 2
 memory = "4G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/gitea-fix-force-push-timeline/context/d8f1d967-d0d8-5e55-a563-fc5ecdf7f4c8.jsonl", destination = "/context/d8f1d967-d0d8-5e55-a563-fc5ecdf7f4c8.jsonl"},
+]
+workdir = "/repo/gitea"
 
 [verifier]
 timeout_sec = 600.0

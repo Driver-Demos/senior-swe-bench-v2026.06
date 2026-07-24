@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "16G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/immich-feat-release-candidate-detection/context/a727aeeb-d5e9-5b74-8c95-d815fd7d5cde.jsonl", destination = "/context/a727aeeb-d5e9-5b74-8c95-d815fd7d5cde.jsonl"},
+]
+workdir = "/repo/immich"
 
 [verifier]
 timeout_sec = 600.0

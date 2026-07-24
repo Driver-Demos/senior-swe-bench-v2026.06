@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/better-auth-fix-oauth-provider-return/context/ace172e4-4c4b-5de4-898c-d674e9384867.jsonl", destination = "/context/ace172e4-4c4b-5de4-898c-d674e9384867.jsonl"},
+]
+workdir = "/repo/better-auth"
 
 [verifier]
 timeout_sec = 600.0

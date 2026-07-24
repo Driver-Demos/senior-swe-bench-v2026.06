@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/plausible-feat-shared-dashboard-deeplink/context/4eb883eb-41c4-559f-95d0-b909bef7a5b6.jsonl", destination = "/context/4eb883eb-41c4-559f-95d0-b909bef7a5b6.jsonl"},
+]
+workdir = "/repo/plausible"
 
 [verifier]
 timeout_sec = 1200.0

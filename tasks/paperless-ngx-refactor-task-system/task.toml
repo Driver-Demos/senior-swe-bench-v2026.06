@@ -12,6 +12,10 @@ cpus = 2
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/paperless-ngx-refactor-task-system/context/5b0217f2-da55-59e6-b53e-49121ddaca78.jsonl", destination = "/context/5b0217f2-da55-59e6-b53e-49121ddaca78.jsonl"},
+]
+workdir = "/repo/paperless-ngx"
 
 [verifier]
 timeout_sec = 1800.0

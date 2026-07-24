@@ -12,6 +12,10 @@ cpus = 2
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/immich-fix-server-live-photo/context/8f5ac00b-0289-55d6-947b-eb9eb9059859.jsonl", destination = "/context/8f5ac00b-0289-55d6-947b-eb9eb9059859.jsonl"},
+]
+workdir = "/repo/immich"
 
 [verifier]
 timeout_sec = 1200.0

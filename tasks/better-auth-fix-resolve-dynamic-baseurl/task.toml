@@ -12,6 +12,10 @@ cpus = 4
 memory = "8G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/better-auth-fix-resolve-dynamic-baseurl/context/5529cf04-afb5-5f8a-9159-2990531eb2d2.jsonl", destination = "/context/5529cf04-afb5-5f8a-9159-2990531eb2d2.jsonl"},
+]
+workdir = "/repo/better-auth"
 
 [verifier]
 timeout_sec = 600.0

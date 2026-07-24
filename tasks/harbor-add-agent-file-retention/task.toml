@@ -12,6 +12,10 @@ cpus = 2
 memory = "4G"
 storage = "20G"
 network_mode = "public"
+input_artifacts = [
+    {source = "senior-swe-bench-v2026.06/tasks/harbor-add-agent-file-retention/context/dca69564-066b-529c-86ba-aca6659f4af4.jsonl", destination = "/context/dca69564-066b-529c-86ba-aca6659f4af4.jsonl"},
+]
+workdir = "/repo/harbor"
 
 [verifier]
 timeout_sec = 1800.0
